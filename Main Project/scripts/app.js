@@ -1,5 +1,5 @@
 // Set constraints for the video stream
-var constraints = { video: { facingMode: "environment" }, audio: false };
+var constraints = { video: true, audio: false };
 var track = null;
 
 // Define constants
@@ -8,17 +8,56 @@ const cameraView = document.querySelector("#camera--view"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger");
 
+// Define variables
+let cameras = []
+let currentCamera = 0;
+
 // Access the device camera and stream to cameraView
 function cameraStart() {
-    navigator
-        .getUserMedia(constraints
-        ,function(stream) {
+
+    navigator.mediaDevices.enumerateDevices().then(
+        function(devices) {
+        
+            for(let i=0; i<devices.length; i++){
+                if(devices[i].kind == "videoinput"){
+                    cameras.push(   [devices[i].deviceId , devices[i].label]   );
+                    }
+            }
+        }
+    );
+
+    navigator.mediaDevices.getUserMedia(constraints).then(
+        function(stream) {
             track = stream.getTracks()[0];
             cameraView.srcObject = stream;
-        },function(error) {
+        }
+    ).catch(
+        function(error) {
             console.error("Oops. Something is broken.", error);
-        });
+        }
+    );
 }
+
+// Change camera when NextCamera button clicked
+document.getElementById("nextCamera").onclick = () => {
+    var defaultsOpts = { audio: false, video: true };
+    defaultsOpts.video = { deviceId: cameras[currentCamera][0] };
+    
+    if ( cameras.length-1 != currentCamera ){
+        currentCamera++;
+    }
+    else{
+        currentCamera = 0;
+    }
+
+    navigator.mediaDevices.getUserMedia(defaultsOpts).then(
+        function(stream) {
+            track = stream.getTracks()[0];
+            cameraView.srcObject = stream;
+            console.log(defaultsOpts);
+        }
+    );
+};
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
