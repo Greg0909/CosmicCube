@@ -1,0 +1,41 @@
+<html lang="en">
+    <head>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <!-- v2 -->
+        <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+
+        <!-- v1 -->
+        <script src='https://unpkg.com/tesseract.js@1.0.19/src/index.js'></script>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/styles.css" rel="stylesheet">
+        
+		<title>Cosmic Cube</title>
+        
+    </head>
+    <body>
+        <h1>Extracted Text:</h1>
+		<p id="ticketTextDisplay"></p>
+
+		<main id="camera">
+
+		    <!-- Camera sensor -->
+		    <canvas id="camera--sensor"></canvas>
+		    
+		    <!-- Camera view -->
+		    <video id="camera--view" autoplay playsinline></video>
+		    
+		    <!-- Camera output -->
+		    <img src="//:0" alt="" id="camera--output">
+
+		    <!-- Camera trigger -->
+		    <button id="camera--trigger">Take a picture</button>
+
+		</main>
+
+    </body>
+	<script src="scripts/TesseractApi.js"></script>
+    <script src="scripts/app.js"></script>
+</html>
