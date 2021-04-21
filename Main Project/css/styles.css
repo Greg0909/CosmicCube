@@ -5,11 +5,29 @@ html, body{
   width: 100%;
 }
 
-#camera, #camera--view, #camera--sensor, #camera--output{
+
+#camera, #camera--output {
     position: fixed;
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
+    /*object-fit: cover; */
+}
+
+#camera--view{
+    position: fixed;
+    left: 50%;
+}
+
+#camera--view, #camera--sensor{
+    position: fixed;   
     object-fit: cover;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#camera--view, #camera--sensor{
+    height: auto;
+    width: 100%;
 }
 
 /* #camera--view, #camera--sensor, #camera--output{
@@ -33,12 +51,19 @@ html, body{
 }
 
 .taken{
-    height: 100px!important;
+    /* height: 100px!important; */
+    height: auto;
     width: 100px!important;
+    /*width: 100px!important; */
     transition: all 0.5s ease-in;
     border: solid 3px white;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
     top: 20px;
     right: 20px;
     z-index: 2;
+}
+
+#ticketTextDisplay{
+    display: block;
+    max-width:calc(100% -  130px);
 }
