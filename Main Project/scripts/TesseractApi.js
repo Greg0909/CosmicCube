@@ -21,8 +21,8 @@ async function analyzeImage(imageUrl) {
         Tesseract.setLogging(true);
         
         await worker.load();
-        await worker.loadLanguage('spa');
-        await worker.initialize('spa');
+        await worker.loadLanguage('eng');
+        await worker.initialize('eng');
     
         let result = await worker.detect(imageUrl);
         console.log("Result data: " + result.data);
