@@ -11,6 +11,10 @@ const cameraView = document.querySelector("#camera--view"),
 // Define variables
 let cameras = []
 let currentCamera = 0;
+if(localStorage.getItem("currentCamera"))
+{
+    currentCamera = localStorage.getItem("currentCamera");
+}
 
 // Access the device camera and stream to cameraView
 function cameraStart() {
@@ -43,12 +47,14 @@ document.getElementById("nextCamera").onclick = () => {
     var defaultsOpts = { audio: false, video: true };
     defaultsOpts.video = { deviceId: cameras[currentCamera][0] };
     
-    if ( cameras.length-1 != currentCamera ){
+    if ( currentCamera < cameras.length-1 ){
         currentCamera++;
     }
     else{
         currentCamera = 0;
     }
+
+    localStorage.setItem("currentCamera", currentCamera);
 
     navigator.mediaDevices.getUserMedia(defaultsOpts).then(
         function(stream) {

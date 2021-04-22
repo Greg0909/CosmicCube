@@ -21,8 +21,8 @@ async function analyzeImage(imageUrl) {
         Tesseract.setLogging(true);
         
         await worker.load();
-        await worker.loadLanguage('eng');
-        await worker.initialize('eng');
+        await worker.loadLanguage('spa');
+        await worker.initialize('spa');
     
         let result = await worker.detect(imageUrl);
         console.log("Result data: " + result.data);
@@ -34,7 +34,6 @@ async function analyzeImage(imageUrl) {
         await worker.terminate();
     
         sendTciketText( ticketText );
-        //extractTicketInfo( ticketText );
     }
     catch{
         ticketTextDisplay.innerText += `Error en el analisis de la imagen :c\n`;
@@ -48,25 +47,3 @@ function sendTciketText(ticketText){
     );
 }
 
-function extractTicketInfo( ticketText ) { 
-
-    let stationNumberRegex1 = /^[A-Z]+[\d ]+/gi;
-    let stationNumberRegex2 = /[\d ]*$/gi;
-    let stationNumber = stationNumberRegex2.exec( stationNumberRegex1.exec(ticketText)["0"] )["0"];
-    stationNumber = stationNumber.replace(/\s+/g, '');
-
-    let buyDateRegex1 = /Fecha C(.)+/gi;
-    let buyDateRegex2 = /(\d\d:\d\d:\d\d)+( )*$/gi;
-    let buyDate = buyDateRegex2.exec( buyDateRegex1.exec( ticketText )["0"] )["0"];
-    buyDate = buyDate.replace(/\s+/g, '');
-
-    let ticketNumberRegex1 = /ticket([\d ]+)/gi;
-    let ticketNumberRegex2 = / [\d ]*$/gi;
-    let ticketNumber = ticketNumberRegex2.exec( ticketNumberRegex1.exec( ticketText )["0"] )["0"];
-    ticketNumber = ticketNumber.replace(/\s+/g, '');
-
-    console.log("Numero de estacion:", stationNumber);
-    console.log("Fecha de Compra:", buyDate);
-    console.log("Ticket Number:", ticketNumber);
-
-}
