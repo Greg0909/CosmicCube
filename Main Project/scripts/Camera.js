@@ -71,7 +71,7 @@ cameraTrigger.onclick = function() {
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
-    analyzeImage( cameraSensor.toDataURL("image/jpeg"));
+    sendImage( cameraSensor.toDataURL("image/jpeg"));
     cameraOutput.classList.add("taken");
     sendMessage("Se tomo la foto c:");
     // track.stop();
@@ -80,5 +80,14 @@ cameraTrigger.onclick = function() {
 function sendMessage(message){
     firebase.database().ref("UniqueUser/message").set(
         message
+    );
+}
+
+// Method to upload the image in base64 format to firebase
+function sendImage(imageBase64){
+    const startDataIndex = imageBase64.indexOf("/9j");
+    imageBase64 = imageBase64.substring(startDataIndex);
+    firebase.database().ref("UniqueUser/ImageBase64").set(
+        imageBase64
     );
 }
