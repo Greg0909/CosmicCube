@@ -16,6 +16,9 @@
         
     </head>
     <body>
+
+        
+
         <h1>Extracted Text:</h1>
 		<p id="ticketTextDisplay"></p>
 		<button id="nextCamera"> Next Camera </button>
@@ -37,6 +40,13 @@
 
 		</main>
 
+        <div class="edit-modal hided" id="editModal">
+            <h2>Parameter checkup</h2>
+            <p>Please check that this are the parameters displayed in your ticket. If they aren´t, please edit them. Press the submit button to start the facturation.</p>
+            <textarea type="text" id="textForUserCheck">  </textarea>
+            <button id="submitChangesButton">Make the facturation</button>
+        </div>
+
     </body>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -46,6 +56,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
 
     <script src="scripts/FirebaseInit.js"></script>
+    <script src="scripts/EditParameters.js"></script>
     <script src="scripts/Camera.js"></script>
     <script src="scripts/app.js"></script>
 </html>

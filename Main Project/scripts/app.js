@@ -1,4 +1,4 @@
-
+let firstEntry = true;
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
