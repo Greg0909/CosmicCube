@@ -71,8 +71,8 @@ html, body{
 .edit-modal{
     background-color: blanchedalmond;
     position: absolute;
-    height: 85%;
-    width: 80%;
+    height: 80%;
+    width: 60%;
     left: 10%;
     top:10%;
     padding: 2em;
@@ -80,7 +80,7 @@ html, body{
 
 #textForUserCheck{
     width:100%;
-    height: 80%;
+    height: 50%;
     margin-bottom: 2em;
 }
 
