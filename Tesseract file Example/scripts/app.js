@@ -30,25 +30,26 @@ async function work() {
 
     result = await worker.recognize(exampleImage);
     let ticketText = result.data.text;
+    console.log(ticketText);
 
-    let stationNumberRegex1 = /^[A-Z]+[\d ]+/gi;
-    let stationNumberRegex2 = /[\d ]*$/gi;
-    let stationNumber = stationNumberRegex2.exec( stationNumberRegex1.exec(ticketText)["0"] )["0"];
-    stationNumber = stationNumber.replace(/\s+/g, '');
+    // let stationNumberRegex1 = /^[A-Z]+[\d ]+/gi;
+    // let stationNumberRegex2 = /[\d ]*$/gi;
+    // let stationNumber = stationNumberRegex2.exec( stationNumberRegex1.exec(ticketText)["0"] )["0"];
+    // stationNumber = stationNumber.replace(/\s+/g, '');
 
-    let buyDateRegex1 = /Fecha C(.)+/gi;
-    let buyDateRegex2 = /(\d\d:\d\d:\d\d)+( )*$/gi;
-    let buyDate = buyDateRegex2.exec( buyDateRegex1.exec( ticketText )["0"] )["0"];
-    buyDate = buyDate.replace(/\s+/g, '');
+    // let buyDateRegex1 = /Fecha C(.)+/gi;
+    // let buyDateRegex2 = /(\d\d:\d\d:\d\d)+( )*$/gi;
+    // let buyDate = buyDateRegex2.exec( buyDateRegex1.exec( ticketText )["0"] )["0"];
+    // buyDate = buyDate.replace(/\s+/g, '');
 
-    let ticketNumberRegex1 = /ticket([\d ]+)/gi;
-    let ticketNumberRegex2 = / [\d ]*$/gi;
-    let ticketNumber = ticketNumberRegex2.exec( ticketNumberRegex1.exec( ticketText )["0"] )["0"];
-    ticketNumber = ticketNumber.replace(/\s+/g, '');
+    // let ticketNumberRegex1 = /ticket([\d ]+)/gi;
+    // let ticketNumberRegex2 = / [\d ]*$/gi;
+    // let ticketNumber = ticketNumberRegex2.exec( ticketNumberRegex1.exec( ticketText )["0"] )["0"];
+    // ticketNumber = ticketNumber.replace(/\s+/g, '');
 
-    console.log("Numero de estacion:", stationNumber);
-    console.log("Fecha de Compra:", buyDate);
-    console.log("Ticket Number:", ticketNumber);
+    // console.log("Numero de estacion:", stationNumber);
+    // console.log("Fecha de Compra:", buyDate);
+    // console.log("Ticket Number:", ticketNumber);
 
     await worker.terminate();
 }
